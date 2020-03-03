@@ -3,12 +3,17 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Chepe</title>
+	<link rel="stylesheet" href="./styles.css">
+	<title>LexTranslate</title>
 </head>
 <body>
-	<button onclick="startRecognition()">Reconocer voz</button>
-	<button onclick="stopRecognition()">Deter reconocimiento</button>
 	
+	<div class="app" id="app">
+    <button onclick="startRecognition()">Reconocer voz</button>
+	  <button onclick="stopRecognition()">Deter reconocimiento</button>
+	</div>
+
+	<script src="/eel.js"></script>
 	<script src="./scripts/lib/artyom.window.min.js"></script>
 	<script src="./scripts/voiceRecognition.js"></script>
 	<script src="./scripts/app.js"></script>

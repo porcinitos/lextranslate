@@ -1,1 +1,2 @@
-console.log("chepe")
+
+eel.python_funct();

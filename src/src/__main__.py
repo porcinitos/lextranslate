@@ -1,6 +1,5 @@
 import eel
 
-
 @eel.expose
 def python_funct():
   print("hola desde python")

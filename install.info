@@ -1,0 +1,6 @@
+# Asegurese de tener pip instalado
+pip --user install pipenv #instalamos el gestor de dependencias
+pipenv install #instalamos todas las dependencias
+cd o dir ./src #entramos a la carpeta de desarrollo
+pipenv run python __main__.py
+

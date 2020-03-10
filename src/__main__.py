@@ -7,7 +7,7 @@ def python_funct():
 
 def __init__():
   eel.init('./gui')
-  eel.start('index.html', size = (960, 540), mode='chrome' )
+  eel.start('index.html', size = (1020, 540), mode='chrome' )
 
 if __name__ == "__main__":
   __init__()

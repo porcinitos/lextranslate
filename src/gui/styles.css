@@ -6,9 +6,54 @@
 
 body{
 	margin: 0;
+	background-color: hsl(200,100%,96.5%)
 }
 
 .app{
-	min-height: 100vh;
-	background-color: salmon;
+	position: relative;
+	width: 1020px;
+	height: 540px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.app::before{
+	position: absolute;
+	top: 0;
+	content: "";
+	width: 100%;
+	background-color: hsl(210, 73%, 54%);
+	height: 19rem;
+	z-index: -1;
+}
+
+.cabeceras{
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin-top: 3em;
+}
+
+.cabeceras__cabecera{
+	display: block;
+	background-color: hsl(199, 100%, 60%);
+	padding: 0.5em 2em;
+	border-radius: 5px;
+	color: hsl(200,100%,96.5%);
+	cursor: default;
+}
+.entradas{
+	margin-top: 3em;
+	width: 90%;
+	display: flex;
+	justify-content: space-between;
+}
+.entradas__entrada{
+	height: 17rem;
+	flex-basis: 47%;
+	border-radius: 5px;
+	resize: none;
+	background-color: hsl(200,100%,96.5%)
 }

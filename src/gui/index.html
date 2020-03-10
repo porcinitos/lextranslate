@@ -8,10 +8,18 @@
 </head>
 <body>
 	
-	<div class="app" id="app">
-    <button onclick="startRecognition()">Reconocer voz</button>
-	  <button onclick="stopRecognition()">Deter reconocimiento</button>
-	</div>
+	<main class="app" id="app">
+		<section class="cabeceras">
+			<div class="cabeceras__cabecera">English</div>
+			<div class="cabeceras__cabecera">Spanish</div>
+		</section>
+		<section class="entradas">
+		  <textarea class="entradas__entrada" id"entradaIzquierda" ></textarea>
+		  <textarea class="entradas__entrada" id"entradaIzquierda" ></textarea>
+		</section> 
+    <!-- <button onclick="startRecognition()">Reconocer voz</button>
+		<button onclick="stopRecognition()">Deter reconocimiento</button> -->
+	</main>
 
 	<script src="/eel.js"></script>
 	<script src="./scripts/lib/artyom.window.min.js"></script>

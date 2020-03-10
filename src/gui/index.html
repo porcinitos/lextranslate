@@ -10,12 +10,15 @@
 	
 	<main class="app" id="app">
 		<section class="cabeceras">
-			<div class="cabeceras__cabecera">English</div>
 			<div class="cabeceras__cabecera">Spanish</div>
+			<div class="cabeceras__cabecera">English</div>
 		</section>
 		<section class="entradas">
-		  <textarea class="entradas__entrada" id"entradaIzquierda" ></textarea>
-		  <textarea class="entradas__entrada" id"entradaIzquierda" ></textarea>
+			<div class="entrada__container"izquierda>
+		    <textarea class="entradas__entrada entrada-principal" id"entradaIzquierda" placeholder="Ingresa una oración o párrafo"></textarea> 
+		    <span class="entrada__link">traduce un archivo</span>
+			</div>
+		  <textarea class="entradas__entrada entrada-derecha" id"entradaDerecha"    ></textarea>
 		</section> 
     <!-- <button onclick="startRecognition()">Reconocer voz</button>
 		<button onclick="stopRecognition()">Deter reconocimiento</button> -->

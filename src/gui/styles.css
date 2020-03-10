@@ -1,7 +1,13 @@
+@font-face{
+	font-family: Krub;
+	src: url("./assets/Krub.ttf");
+}
+
 *,
 *::before,
 *::after{
 	box-sizing: border-box;
+	font-family: Krub;
 }
 
 body{
@@ -24,7 +30,9 @@ body{
 	content: "";
 	width: 100%;
 	background-color: hsl(210, 73%, 54%);
-	height: 19rem;
+	background: url("./assets/bg.jpg") center/cover no-repeat;
+	background-size: cover;
+	height: 21rem;
 	z-index: -1;
 }
 
@@ -40,6 +48,7 @@ body{
 	display: block;
 	background-color: hsl(199, 100%, 60%);
 	padding: 0.5em 2em;
+	font-size: 0.9em;
 	border-radius: 5px;
 	color: hsl(200,100%,96.5%);
 	cursor: default;

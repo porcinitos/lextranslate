@@ -1,5 +1,15 @@
-# Asegurese de tener pip instalado
+# install
+# Asegurese de tener configurado git en su equipo
+git clone https://github.com/porcinitos/lextranslate.git
+cd lextranslate
+
+# Para correr asegurese de tener pip instalado
 pip --user install pipenv #instalamos el gestor de dependencias
 pipenv install #instalamos todas las dependencias
 python correr.py #ejecutamos el fichero de compilacion
+
+# una vez echos los cambios y verificado su funcionamiento
+git add -A
+git commit -m "lo que se hizo o cambio"
+git push -u origin dev
 

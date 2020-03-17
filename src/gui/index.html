@@ -9,18 +9,21 @@
 <body>
 	
 	<main class="app" id="app">
-		<section class="cabeceras">
+		<section class="cabeceras" id="cabeceras">
 			<div class="cabeceras__cabecera">Spanish</div>
+      <!-- icono de cambio insertado dinámicamente-->
 			<div class="cabeceras__cabecera">English</div>
 		</section>
 		<section class="entradas">
-			<div class="entradas__entrada">
-		    <textarea class="entrada__textarea" id"entradaIzquierda" placeholder="Ingresa una oración o párrafo"></textarea> 
+			<div class="entradas__entrada" id="entradaIzquierda">
+		    <textarea class="entrada__textarea" spellcheck="false" placeholder="Ingresa una oración o párrafo"></textarea> 
 		    <span class="entrada__archivo">traduce un archivo</span>
+				<div class="entrada__barra"> <!-- Elementos insertados dinámicamente --> </div>
 			</div>
-			<div class="entradas__entrada">
-		    <textarea class="entrada__textarea" id"entradaDerecha"></textarea>
-			</div>
+			<div class="entradas__entrada" id="entradaDerecha">
+		    <textarea class="entrada__textarea" spellcheck="false" placeholder="Traducción" disabled="true" ></textarea>
+				<div class="entrada__barra"> <!-- Elementos insertados dinámicamente --> </div>
+	  	</div>
 		</section> 
     <!-- <button onclick="startRecognition()">Reconocer voz</button>
 		<button onclick="stopRecognition()">Deter reconocimiento</button> -->

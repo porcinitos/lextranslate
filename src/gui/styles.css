@@ -15,6 +15,7 @@ body{
 	background-color: hsl(200,100%,96.5%)
 }
 
+.invisible{ display: none; }
 .app{
 	position: relative;
 	width: 1020px;
@@ -43,7 +44,8 @@ body{
 	margin-top: 3em;
 }
 
-.cabeceras__cabecera{
+.cabeceras__cabecera,
+.barra__traducir{
 	display: block;
 	position: relative;
 	background-color: hsl(199, 100%, 60%);
@@ -57,7 +59,8 @@ body{
 	width: 8em;
 	text-align: center;
 }
-.cabeceras__cabecera:hover{
+.cabeceras__cabecera:hover,
+.barra__traducir:hover{
   filter: brightness(110%);
 }
 .cabeceras__cambiar{
@@ -122,9 +125,16 @@ body{
 	margin-left: 2em;
 	transition: transform 0.5s ease;
 }
-.barra__icono:hover{
-	transform: scale(1.4);
+.barra__icono:hover{transform: scale(1.4);}
+.barra__icono path{fill: hsl(210, 73%, 55%); }
+.icono-desactivado:hover{transform: scale(1);}
+.icono-desactivado path{fill: #999;}
+
+.barra__traducir{
+	cursor: pointer;
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
 }
-.barra__icono path{
-	fill: #999;
-}
+.desactivado { transition: none; background-color: #999; cursor: default;}
+.desactivado:hover{filter: brightness(100%)}

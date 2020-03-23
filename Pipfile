@@ -6,8 +6,10 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-ply = "*"
-eel = "*"
+ply    = "*"
+eel    = "*"
+gtts = "*"
+winsound = "*"
 
 [requires]
 python_version = "3.8"

@@ -1,8 +1,20 @@
 import eel
+import os
+from gtts import gTTS
+from platform import system
 
 @eel.expose
-def python_funct():
-  print("hola desde python")
+def hablar(texto,lengua):
+  audioname = "voice.wav"
+  tts = gTTS(text=texto, lang = "es" if lengua == 0 else "en")
+  print("es" if lengua == 0 else "en")
+  tts.save(audioname)
+  if (system() == "Linux"):
+   os.system("mpg123 " + audioname)
+  else:
+    from winsound import PlaySound, SND_FILENAME
+    PlaySound(audioname, SND_FILENAME)
+  os.remove(audioname)
 
 
 def __init__():

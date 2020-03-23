@@ -136,5 +136,7 @@ body{
 	right: 5px;
 	bottom: 5px;
 }
+.seleccionado {transform: scale(1);}
+.seleccionado path{fill: salmon;}
 .desactivado { transition: none; background-color: #999; cursor: default;}
 .desactivado:hover{filter: brightness(100%)}

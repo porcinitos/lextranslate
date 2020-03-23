@@ -1,22 +1,8 @@
 const artyom = new Artyom();
 
-artyom.initialize({lang:"es-ES"});
+artyom.initialize();
 
-let settings = {
-    continuous:true, // Don't stop never because i have https connection
-    onResult:function(text){
-        // text = the recognized text
-        console.log(text);
-    },
-    onStart:function(){
-        console.log("Escuchando voz");
-    },
-    onEnd:function(){
-        console.log("Detenido");
-    }
-};
-
-var UserDictation = artyom.newDictation(settings);
+let dictado = artyom.newDictation(settings);
 
 function startRecognition(){
   UserDictation.start();

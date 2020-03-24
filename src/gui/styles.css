@@ -131,10 +131,10 @@ body{
 	margin-left: 2em;
 	transition: transform 0.5s ease;
 }
+.barra__icono path{fill: var(--color-cta); } 
 .barra__icono:hover{transform: scale(1.4);}
-.barra__icono path{fill: var(--color-cta); }
-.icono-desactivado:hover{transform: scale(1);}
 .icono-desactivado path{fill: #999;}
+.icono-desactivado:hover{transform: none;}
 .barra__traducir{
 	cursor: pointer;
 	position: absolute;

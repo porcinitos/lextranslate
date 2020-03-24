@@ -29,7 +29,8 @@ def analizar(texto):
   #ejecutamos los analisis
   # obtenemos las variables desde utils
   tabla_simbolos = "LexToken(tepo,15,2)\nLexToken(tepo,15,2)\nLexToken(tepo,15,2)\nLexToken(tepo,15,2)\nLexToken(tepo,15,2)\nLexToken(tepo,15,2)"
-  tabla_errores ="LexToken(error,15,2)"
+  # tabla_errores ="LexToken(error,15,2)"
+  tabla_errores =""
   traduccion = "tepo tepo"
   if len(tabla_simbolos) > 0:
     eel.mostrarTabla('{"tabla":"%r","tipo":"simbolos"}' % tabla_simbolos)

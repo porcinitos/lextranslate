@@ -6,8 +6,9 @@ let lenguajeActual = ESPAÑOL;
 const app = document.getElementById("app")
 const botonTraducir = document.getElementById("traducir")
 const entradaIzquierda = document.getElementById("entradaIzquierda")
-const barraIzquierda = entradaIzquierda.getElementsByClassName("entrada__barra")[0]
 const entradaDerecha   = document.getElementById("entradaDerecha")
+const barraIzquierda = entradaIzquierda.getElementsByClassName("entrada__barra")[0]
+const barraDerecha= entradaDerecha.getElementsByClassName("entrada__barra")[0]
 const cabeceras = document.getElementById("cabeceras")
 
 // clases
@@ -33,7 +34,7 @@ class ReconocimientoPorVoz{
 	
   detenerEscucharYEscribir(){ this.dictado.stop()}
 
-	activarHablar(area){ eel.hablar(area.value, lenguajeActual)}
+	activarHablar(area){ eel.hablar(area.value, area.classList.contains("textarea-izquierda") ? lenguajeActual: lenguajeActual ? 0 : 1); }
  			
 }
 
@@ -43,10 +44,13 @@ class ImportarRecursos{
 	constructor(){}
  
 	async cargarIconos(){
-    const microfono = await importarRecurso("../assets/iconos/micro.svg")
-		const bocina = await importarRecurso("../assets/iconos/bocina.svg")
+		const bocina       = await importarRecurso("../assets/iconos/bocina.svg")
+    const microfono    = await importarRecurso("../assets/iconos/micro.svg")
+		const portapapeles = await importarRecurso("../assets/iconos/portapapeles.svg")
 		barraIzquierda.innerHTML += microfono + bocina ;
-		const iconos = barraIzquierda.getElementsByClassName("barra__icono")
+		barraDerecha.innerHTML += portapapeles + bocina ;
+		let iconos = [...barraIzquierda.getElementsByClassName("barra__icono")]
+		iconos.push(...barraDerecha.getElementsByClassName("barra__icono"))
 		for(let icono of iconos){ icono.addEventListener("click", iconoClick );}
 	}
 	async cargarCambiar(){
@@ -97,9 +101,16 @@ function microfonoClick(area,currentTarget){
 
 function iconoClick(e){
   let classList = e.currentTarget.classList;
-  let area = entradaIzquierda.getElementsByClassName("entrada__textarea")[0]
+	let entrada = e.currentTarget.parentElement.parentElement
+  let area = entrada.getElementsByClassName("entrada__textarea")[0]
 	if(!classList.contains("icono-desactivado")){
-		classList.contains("micro") ? microfonoClick(area,e.currentTarget) : reconocimientoPorVoz.activarHablar(area)
+		if (classList.contains("micro")){
+      microfonoClick(area,e.currentTarget)  
+		}else if(classList.contains("bocina")){
+      reconocimientoPorVoz.activarHablar(area)
+		}else if (classList.contains("portapapeles")){
+      alert("Copiar al clipboard")
+		}
 	}
 }
 
@@ -109,8 +120,8 @@ function cambiarEstadoAlEscribir(){
 	const micro   = barraIzquierda.getElementsByClassName("micro")[0]
 	const bocina  = barraIzquierda.getElementsByClassName("bocina")[0]
 	const archivo = entradaIzquierda.getElementsByClassName("entrada__archivo")[0]
-	const texto   = entradaIzquierda.getElementsByClassName("entrada__textarea")[0].value.length
-	if ( texto > 0){
+	const texto= entradaIzquierda.getElementsByClassName("entrada__textarea")[0].value
+	if ( texto.length > 0){
     if (!archivo.classList.contains("invisible")){
 		  archivo.classList.add("invisible")
 			micro.classList.add("icono-desactivado")
@@ -137,15 +148,16 @@ function mostrarTabla(tablaObj){
 function ocultarResultados(){
 	const salidaErrores  = document.getElementById("salidaDerecha")
 	const salidaTokens   = document.getElementById("salidaIzquierda")
+  const iconos = barraDerecha.getElementsByClassName("barra__icono")
+  const textarea = entradaDerecha.getElementsByClassName("entrada__textarea")[0]
 	salidaErroresVisible = !salidaErrores.classList.contains("invisible")
 	salidaTokensVisible   = !salidaTokens.classList.contains("invisible")
 
 	if (salidaTokensVisible && !salidaErroresVisible){
-    let textarea = entradaDerecha.getElementsByClassName("entrada__textarea")[0]
     entradaDerecha.classList.add("desactivado")
     textarea.classList.add("desactivado")
-		textarea.setAttribute("placeholder", "Traduccion")
-		console.log(textarea.getAttribute("placeholder"))
+		textarea.value = "Traduccion"
+	  for(let icono of iconos){ icono.classList.add("icono-desactivado")}
 	}
 
 	if (salidaTokensVisible){
@@ -153,14 +165,18 @@ function ocultarResultados(){
 	}
 
 	if (salidaErroresVisible){
-    salidaIzquierda.classList.add("invisible")
+    salidaErrores.classList.add("invisible")
+		textarea.value = "Traduccion"
 	}	
 }
 
 eel.expose(mostrarTraduccion)
 function mostrarTraduccion(texto){
 	let textarea = entradaDerecha.getElementsByClassName("entrada__textarea")[0]
-	textarea.setAttribute("placeholder", texto)
+  const iconos = barraDerecha.getElementsByClassName("barra__icono")
+	for(let icono of iconos){ icono.classList.remove("icono-desactivado")}
+
+	textarea.value = texto
   entradaDerecha.classList.remove("desactivado")
   textarea.classList.remove("desactivado")
 }
@@ -173,7 +189,7 @@ function mostrarArchivo(texto){
 
 eel.expose(mostrarErrorTraduccion)
 function mostrarErrorTraduccion(){
-	entradaDerecha.getElementsByClassName("entrada__textarea")[0].setAttribute("placeholder", "Errores durante el análisis")
+	entradaDerecha.getElementsByClassName("entrada__textarea")[0].value =  "Errores durante el análisis"
 }
 
 function botonTraducirClick(){

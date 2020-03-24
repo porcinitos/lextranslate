@@ -5,7 +5,9 @@
 
 :root{
 	--color-alerta: salmon;
-	--color-desactivado: hsl(200,40%,90%);
+	--color-desactivado: hsl(200,50%,90%);
+	--color-fondo: hsl(200,100%,98.5%);
+	--color-cta: hsl(199, 80%, 54%);
 }
 
 *,
@@ -17,7 +19,7 @@
 
 body{
 	margin: 0;
-	background-color: hsl(200,100%,98%)
+	background-color: var(--color-fondo);
 }
 
 .app{
@@ -28,7 +30,6 @@ body{
 	flex-direction: column;
 	align-items: center;
 }
-
 .app::before{
 	position: absolute;
 	top: 0;
@@ -47,16 +48,15 @@ body{
 	align-items: center;
 	margin-top: 3em;
 }
-
 .cabeceras__cabecera,
 .barra__traducir{
 	display: block;
 	position: relative;
-	background-color: hsl(199, 100%, 60%);
+	background-color: var(--color-cta);
 	padding: 0.5em 2em;
 	font-size: 0.9em;
 	border-radius: 5px;
-	color: hsl(200,100%,96.5%);
+	color: var(--color-fondo);
 	cursor: default;
 	box-shadow: 0px 0.4px 5px 1px rgba(0,0,0,0.25);
 	transition: filter 0.5s ease;
@@ -65,7 +65,7 @@ body{
 }
 .cabeceras__cabecera:hover,
 .barra__traducir:hover{
-  filter: brightness(110%);
+  filter: brightness(105%);
 }
 .cabeceras__cambiar{
 	position: absolute;
@@ -75,7 +75,7 @@ body{
 }
 .cabeceras__cambiar:hover{transform: scale(1.2);}
 .cabeceras__cambiar:active{transform: rotate(180deg)}
-.cabeceras__cambiar path {fill: hsl(200,100%,96.5%);}
+.cabeceras__cambiar path {fill: var(--color-fondo);}
 
 .entradas, 
 .salidas{
@@ -102,7 +102,7 @@ body{
 	font-size: 1em;
 	padding: 1.4em;
 	padding-top: 1.8em;
-	background-color: hsl(200,100%,96.5%);
+	background-color: var(--color-fondo);
 }
 .entradas__entrada:hover{
 	transform: scale(1.02);
@@ -111,7 +111,7 @@ body{
   position: absolute;
   top: 4.6em;
   left: 1.7em;
-  color: hsl(210, 73%, 54%);
+  color: var(--color-cta);
   font-weight: 500;
   font-size: 0.9em;
   cursor: pointer;
@@ -132,10 +132,9 @@ body{
 	transition: transform 0.5s ease;
 }
 .barra__icono:hover{transform: scale(1.4);}
-.barra__icono path{fill: hsl(210, 73%, 55%); }
+.barra__icono path{fill: var(--color-cta); }
 .icono-desactivado:hover{transform: scale(1);}
 .icono-desactivado path{fill: #999;}
-
 .barra__traducir{
 	cursor: pointer;
 	position: absolute;

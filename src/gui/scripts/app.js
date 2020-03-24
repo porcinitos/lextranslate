@@ -109,8 +109,8 @@ function iconoClick(e){
 		}else if(classList.contains("bocina")){
       reconocimientoPorVoz.activarHablar(area)
 		}else if (classList.contains("portapapeles")){
-      alert("Copiar al clipboard")
-		}
+      navigator.clipboard.writeText(area.value).then(() => alert("Texto Copiado"));
+    }
 	}
 }
 

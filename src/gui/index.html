@@ -19,13 +19,21 @@
 			<div class="entradas__entrada" id="entradaIzquierda">
 		    <textarea class="entrada__textarea" spellcheck="false" placeholder="Ingresa una oración o párrafo"></textarea> 
 		    <span class="entrada__archivo">traduce un archivo</span>
-				<div class="entrada__barra"> <div id="traducir" class="barra__traducir desactivado">Traducir</div> <!-- Elementos insertados dinámicamente --> </div>
+				<div class="entrada__barra">
+				 <!-- Elementos insertados dinámicamente --> 
+				</div>
+				<div id="traducir" class="barra__traducir desactivado">Traducir</div>
 			</div>
-			<div class="entradas__entrada" id="entradaDerecha">
-		    <textarea class="entrada__textarea" spellcheck="false" placeholder="Traducción" disabled="true" ></textarea>
+			<div class="entradas__entrada desactivado" id="entradaDerecha">
+		    <textarea class="entrada__textarea desactivado" spellcheck="false" placeholder="Traducción" disabled="true" ></textarea>
 				<div class="entrada__barra"> <!-- Elementos insertados dinámicamente --> </div>
 	  	</div>
 		</section> 
+		<section class="salidas">
+			<div id="salidaIzquierda" class="invisible salidas__salida salida-izquierda" ></div>
+			<div id="salidaDerecha" class="invisible salidas__salida salida-derecha"></div>
+		</section> 
+ 
     <!-- <button onclick="startRecognition()">Reconocer voz</button>
 		<button onclick="stopRecognition()">Deter reconocimiento</button> -->
 	</main>

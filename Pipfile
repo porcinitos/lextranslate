@@ -10,6 +10,7 @@ ply    = "*"
 eel    = "*"
 gtts = "*"
 winsound = "*"
+easygui = "*"
 
 [requires]
 python_version = "3.8"

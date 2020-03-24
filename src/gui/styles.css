@@ -3,6 +3,11 @@
 	src: url("./assets/Krub.ttf");
 }
 
+:root{
+	--color-alerta: salmon;
+	--color-desactivado: hsl(200,40%,90%);
+}
+
 *,
 *::before,
 *::after{
@@ -12,10 +17,9 @@
 
 body{
 	margin: 0;
-	background-color: hsl(200,100%,96.5%)
+	background-color: hsl(200,100%,98%)
 }
 
-.invisible{ display: none; }
 .app{
 	position: relative;
 	width: 1020px;
@@ -73,15 +77,17 @@ body{
 .cabeceras__cambiar:active{transform: rotate(180deg)}
 .cabeceras__cambiar path {fill: hsl(200,100%,96.5%);}
 
-.entradas{
+.entradas, 
+.salidas{
 	margin-top: 3em;
 	width: 90%;
 	display: flex;
 	justify-content: space-between;
 }
-.entradas__entrada{
+.entradas__entrada,
+.salidas__salida{
 	position: relative;
-	flex-basis: 47%;
+	flex-basis: 48%;
 	border-radius: 5px;
 	box-shadow: 0px 0.4px 5px 1px rgba(0,0,0,0.25);
 	transition: transform 0.5s ease;
@@ -136,7 +142,40 @@ body{
 	right: 5px;
 	bottom: 5px;
 }
+
+.salidas{width: 95%; justify-content: space-around;}
+.salidas__salida{
+	min-height: 15em;
+}
+.salida-izquierda{
+	box-shadow: 0px 0.4px 5px 1px hsl(210, 73%, 54%);
+	color: hsl(210, 73%, 54%);
+	padding-left: 0.7em;
+	padding-right: 0.7em;
+}
+.salida-derecha{
+	box-shadow: 0px 0.4px 5px 1px var(--color-alerta);
+  color: var(--color-alerta);
+	padding-left: 0.7em;
+	padding-right: 0.7em;
+}
+.salida-izquierda::before,
+.salida-derecha::before{
+	display: block;
+	font-size: 1em;
+	padding: 0.7em;
+	margin-bottom: 0.7em;
+	border-bottom: 1px solid hsl(210, 73%, 55%);
+}
+.salida-izquierda::before{content:"Tabla de símbolos";}
+.salida-derecha::before{
+  content:"Tabla de errores";
+  border-bottom: 1px solid var(--color-alerta);
+}
+
+/* utils */
+.invisible{ display: none; }
 .seleccionado {transform: scale(1);}
 .seleccionado path{fill: salmon;}
-.desactivado { transition: none; background-color: #999; cursor: default;}
+.desactivado { color: #888; transition: none; background-color: var(--color-desactivado); cursor: default;}
 .desactivado:hover{filter: brightness(100%)}

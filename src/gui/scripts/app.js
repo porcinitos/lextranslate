@@ -11,8 +11,6 @@ const entradaDerecha   = document.getElementById("entradaDerecha")
 const cabeceras = document.getElementById("cabeceras")
 
 // clases
-
-
 class ReconocimientoPorVoz{
 	constructor(){
     this.artyom = new Artyom();
@@ -50,7 +48,6 @@ class ImportarRecursos{
 		barraIzquierda.innerHTML += microfono + bocina ;
 		const iconos = barraIzquierda.getElementsByClassName("barra__icono")
 		for(let icono of iconos){ icono.addEventListener("click", iconoClick );}
-	  document.getElementById("traducir").addEventListener("click", () => console.log(lenguajeActual))
 	}
 	async cargarCambiar(){
   	let cambiar = await importarRecurso("../assets/iconos/cambiar.svg")
@@ -70,7 +67,6 @@ async function importarRecurso(path){
   let text = await response.text();
   return text;
 }
-
 
 function cambiarLenguaje(){
 	const cabeceraIzquierda = document.getElementById("cabeceraIzquierda")
@@ -107,8 +103,8 @@ function iconoClick(e){
 	}
 }
 
-
 function cambiarEstadoAlEscribir(){
+	ocultarResultados()
 	// solo se puede escribir en la barra izquierda
 	const micro   = barraIzquierda.getElementsByClassName("micro")[0]
 	const bocina  = barraIzquierda.getElementsByClassName("bocina")[0]
@@ -118,15 +114,71 @@ function cambiarEstadoAlEscribir(){
     if (!archivo.classList.contains("invisible")){
 		  archivo.classList.add("invisible")
 			micro.classList.add("icono-desactivado")
-			document.getElementById("traducir").classList.remove("desactivado")
+			botonTraducir.classList.remove("desactivado")
 			bocina.classList.remove("icono-desactivado")
 		}
 	}else {
  	  archivo.classList.remove("invisible")
 	  micro.classList.remove("icono-desactivado")
-	  document.getElementById("traducir").classList.add("desactivado")
+	  botonTraducir.classList.add("desactivado")
 	  bocina.classList.add("icono-desactivado")
 	}
+
+}
+
+eel.expose(mostrarTabla)
+function mostrarTabla(tablaObj){
+  tablaObj = JSON.parse(tablaObj)
+	const salida = document.getElementById(tablaObj.tipo === "errores" ? "salidaDerecha" : "salidaIzquierda" )
+	salida.innerText = tablaObj.tabla
+	salida.classList.remove("invisible")
+}
+
+function ocultarResultados(){
+	const salidaErrores  = document.getElementById("salidaDerecha")
+	const salidaTokens   = document.getElementById("salidaIzquierda")
+	salidaErroresVisible = !salidaErrores.classList.contains("invisible")
+	salidaTokensVisible   = !salidaTokens.classList.contains("invisible")
+
+	if (salidaTokensVisible && !salidaErroresVisible){
+    let textarea = entradaDerecha.getElementsByClassName("entrada__textarea")[0]
+    entradaDerecha.classList.add("desactivado")
+    textarea.classList.add("desactivado")
+		textarea.setAttribute("placeholder", "Traduccion")
+		console.log(textarea.getAttribute("placeholder"))
+	}
+
+	if (salidaTokensVisible){
+		salidaTokens.classList.add("invisible")
+	}
+
+	if (salidaErroresVisible){
+    salidaIzquierda.classList.add("invisible")
+	}	
+}
+
+eel.expose(mostrarTraduccion)
+function mostrarTraduccion(texto){
+	let textarea = entradaDerecha.getElementsByClassName("entrada__textarea")[0]
+	textarea.setAttribute("placeholder", texto)
+  entradaDerecha.classList.remove("desactivado")
+  textarea.classList.remove("desactivado")
+}
+
+eel.expose(mostrarArchivo)
+function mostrarArchivo(texto){
+  entradaIzquierda.getElementsByClassName("entrada__textarea")[0].value = texto
+	cambiarEstadoAlEscribir()
+}
+
+eel.expose(mostrarErrorTraduccion)
+function mostrarErrorTraduccion(){
+	entradaDerecha.getElementsByClassName("entrada__textarea")[0].setAttribute("placeholder", "Errores durante el análisis")
+}
+
+function botonTraducirClick(){
+	const texto = entradaIzquierda.getElementsByClassName("entrada__textarea")[0].value.length
+	eel.analizar(texto)
 }
 
 (function events(){
@@ -136,6 +188,7 @@ function cambiarEstadoAlEscribir(){
 	});	
 
 	entradaIzquierda.getElementsByClassName("entrada__textarea")[0].addEventListener("keyup", cambiarEstadoAlEscribir)
-	entradaIzquierda.getElementsByClassName("entrada__archivo")[0].addEventListener("click", () => console.log("subir archivo"))
+	entradaIzquierda.getElementsByClassName("entrada__archivo")[0].addEventListener("click", () => eel.cargar_archivo() )
+	botonTraducir.addEventListener("click", botonTraducirClick)
 
 })();

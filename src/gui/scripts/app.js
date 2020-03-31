@@ -73,6 +73,7 @@ async function importarRecurso(path){
 }
 
 function cambiarLenguaje(){
+	ocultarResultados();
 	const cabeceraIzquierda = document.getElementById("cabeceraIzquierda")
 	const cabeceraDerecha= document.getElementById("cabeceraDerecha")
 	switch (lenguajeActual){

@@ -62,7 +62,19 @@ Interjeccion = ['wow','yuck','ouch','uh','oops','hey','yeah','eh']
 
 Simbolos = {
         "," : "Signo_Coma " ,
-        "," : "Signo_Coma " ,
+        "." : "Signo_Punto " ,
+        ":" : "Signo_dos_puntos " ,
+        ";" : "Signo_puntoycoma " ,
+        "'" : "Signo_comilla_simple " ,
+        "´" : "Signo_apostrofe " ,
+        "(" : "Signo_parentecis_abierto " ,
+        ")" : "Signo_parentecis_cerrado " ,
+        "!" : "Signo_exclamacion_cerredo " ,
+        "¡" : "Signo_exclamacion_abierto " ,
+        "¿" : "Signo_interrogacion_abierto " ,
+        "?" : "Signo_interrogacion_cerrado " ,
+        "/" : "Signo_Diagonal"
+        '"' : "Signo_comillas"
 
         }
 

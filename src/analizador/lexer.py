@@ -3,18 +3,12 @@ import re
 import codecs
 import os
 import sys 
-
-u = utils()
-
-Tokens = ['PronombresPerasonales','AdjetivoDemostrativo','PronombreObjeto','PronombrePosesivo','PronombreInterrogativo',
-'VerboToBe','AdjetivoPosesivo','AdjetivoCalificativo','AdjetivoIndefinido','ArticuloIndefinido','PronombreDemostrativo',
-'AdverbioCantidad','AdjetivodeModo','AdverbiodeAfirmacion','AdverbiodeNegacion','AdverbiodeDuda','PreposiciondeLugar',
-'PreposiciondeTiempo','ConjugacionCoordinante','PreposiciondeMovimiento','ConjugacionSubordinantes','Interjeccion','Apostrofe',
-'SignoInterrogacionA','SignoInterrogacionC','SignoExclamacionA','SignoExclamacionA','coma','punto','dospuntos','puntoycoma','Comillas', 'ParentesisA',
-'ParentesisC']
+import utils as U
 
 
-PronombresPersonales = ['I','You','We','They','She','He']  
+
+
+PronombresPersonales = ['I','you','we','they','she','he']  
 
 AdjetivoDemostrativo = ['this','that','these','those']
 
@@ -28,27 +22,27 @@ VerboToBe = ['am','is','are']
 
 AdjetivoPosesivo = ['my', 'your' ,'his' ,'her' ,'its' ,'our', 'their']
 
-AdjetivoCalificativo = ['Absent','minded','Adventurous','Affectionate','Artistic','Athletic','Attractive','Big',
-'Boring','Cautious','Stingy','Crazy','Curious','Fat','Funny','Generous','Handsome','Honest','Impatient','Intelligent','Interesting',
-'Friendly','Lazy','Mean','Nice','Organized','Clubbable','Patient','Polite','Popular','famed','Pop','Pretty','Serious','Short','Shy',
-'Sincere','Skinny','Small','Strange','Strict','Tall','Thin','Ugly','Unorganized','Worker','Brave','Dirty','Confident','Ecstatic',
-'Energetic','Afraid','Ambitious','Arrogant','Ashamed','Bad','Cantankerous','Careful','Careless','Conceited','Confused','Coward','Cruel',
-'Disappointed','Disciplined','Distressed','Drunk','Envious','quick','Fast','Flirtatious','Good','Gullible','Healthy','Jealous','Lonely','Modest',
-'Naughty','Old','Pessimistic','Poor','Possesive','Practical','Proud','Rich','Sad','Sane','Sick','Slow','Sober','Strong','Stubborn',
-'Stupid','Sympathetic','Trustworthy','Weak','Worried','Young']
+AdjetivoCalificativo = ['absent','minded','adventurous','affectionate','artistic','athletic','attractive','big',
+'boring','cautious','stingy','crazy','curious','fat','funny','generous','handsome','honest','impatient','intelligent','interesting',
+'friendly','lazy','mean','nice','organized','clubbable','patient','polite','popular','famed','pop','pretty','serious','short','shy',
+'sincere','skinny','small','strange','strict','tall','thin','ugly','unorganized','worker','brave','dirty','confident','ecstatic',
+'energetic','afraid','ambitious','arrogant','ashamed','bad','cantankerous','careful','careless','conceited','confused','coward','cruel',
+'disappointed','disciplined','distressed','drunk','envious','quick','fast','flirtatious','good','gullible','healthy','jealous','lonely','Modest',
+'naughty','old','pessimistic','poor','possesive','practical','proud','rich','sad','sane','sick','slow','sober','strong','stubborn',
+'stupid','sympathetic','trustworthy','weak','worried','young']
 
-AdjetivoIndefinido = ['Bad','worse','worst','ill','Badly','far',' farther','farthest','further','furthest','better','best','well','late',
+AdjetivoIndefinido = ['bad','worse','worst','ill','badly','far',' farther','farthest','further','furthest','better','best','well','late',
 'later','latest','little','less','least','many','more','most','much','some']
 
 ArticuloIndefinido = ['a','an']
 
 PronombreDemostrativo = ['such','none']
 
-AdverbioCantidad = ['Almost','Enough','Entirely','Even','Failry','Hardly','Lots','Less','Much','Partially','Pretty','Rather','Quite','Scarcely','So','Too','Very','Way']
+AdverbioCantidad = ['almost','enough','entirely','even','failry','hardly','lots','less','much','partially','pretty','rather','quite','scarcely','so','too','very','way']
 
-AdjetivodeModo = ['Slow','Easy','Simple','Careful','Natural','Happy','Clear','Hard']
+AdjetivodeModo = ['slow','easy','simple','careful','natural','happy','clear','hard']
 
-AdverbiodeAfirmacion = ['certainly','clearly','indeed','naturally','obviously','surely','yes','definitely','obviously','really','truly','Undoubtedly']
+AdverbiodeAfirmacion = ['certainly','clearly','indeed','naturally','obviously','surely','yes','definitely','obviously','really','truly','undoubtedly']
 
 AdverbiodeNegacion = ['no','not','never','nowhere']
 
@@ -60,35 +54,40 @@ PreposiciondeTiempo = ['about','after','around','during','for','over','past','si
 
 PreposiciondeMovimiento = ['across','after','along','around','by','down','into','past','off','onto','to','from','toward','under','up']
 
-ConjugacionCoordinante = ['And','But','however','so','or','then','therefore','yet']
+ConjugacionCoordinante = ['and','but','however','so','or','then','therefore','yet']
 
-ConjugacionSubordinantes = ['Although','As','After','Before','If','Since','Until']
+ConjugacionSubordinantes = ['although','as','after','before','if','since','until']
 
 Interjeccion = ['wow','yuck','ouch','uh','oops','hey','yeah','eh']
 
+Simbolos = {
+        "," : "Signo_Coma " ,
+        "," : "Signo_Coma " ,
 
-u.lista_a_regex(PronombresPersonales)
-u.lista_a_regex(AdjetivoDemostrativo)
-u.lista_a_regex(PronombreObjeto)
-u.lista_a_regex(PronombrePosesivo)
-u.lista_a_regex(PronombreInterrogativo)
-u.lista_a_regex(VerboToBe)
-u.lista_a_regex(AdjetivoPosesivo)
-u.lista_a_regex(AdjetivoCalificativo)
-u.lista_a_regex(AdjetivoIndefinido)
-u.lista_a_regex(ArticuloIndefinido)
-u.lista_a_regex(PronombreDemostrativo)
-u.lista_a_regex(AdverbioCantidad)
-u.lista_a_regex(AdjetivodeModo)
-u.lista_a_regex(AdverbiodeAfirmacion)
-u.lista_a_regex(AdverbiodeNegacion)
-u.lista_a_regex(AdverbiodeDuda)
-u.lista_a_regex(PreposiciondeLugar)
-u.lista_a_regex(PreposiciondeTiempo)
-u.lista_a_regex(PreposiciondeMovimiento)
-u.lista_a_regex(ConjugacionCoordinante)
-u.lista_a_regex(ConjugacionSubordinantes)
-u.lista_a_regex(Interjeccion)
+        }
+
+Tokens = ['PronombresPersonales','AdjetivoDemostrativo','PronombreObjeto','PronombrePosesivo','PronombreInterrogativo',
+'VerboToBe','AdjetivoPosesivo','AdjetivoCalificativo','AdjetivoIndefinido','ArticuloIndefinido','PronombreDemostrativo',
+'AdverbioCantidad','AdjetivodeModo','AdverbiodeAfirmacion','AdverbiodeNegacion','AdverbiodeDuda','PreposiciondeLugar',
+'PreposiciondeTiempo','ConjugacionCoordinante','PreposiciondeMovimiento','ConjugacionSubordinantes','Interjeccion','Apostrofe',
+'SignoInterrogacionA','SignoInterrogacionC','SignoExclamacionA','SignoExclamacionA','coma','punto','dospuntos','puntoycoma','Comillas', 'ParentesisA',
+'ParentesisC'] +[*Simbolos.values()]
+
+
+def t_Sujeto(t):
+     '''
+     [a-zA-z]+
+     ''' 
+     if (t.value in PronombresPersonales): t.type = "PronombresPersonales" 
+     return t
+
+def t_Simbolos(t):
+  '''
+  
+  ''' 
+  if (t.value in [*Simbolos.keys()]): t.type = Simbolos[t.value]
+  else: t_error(t)
+        
 
 t_Apostrofe = r'´'
 t_SignoInterrogacionA = r'¿'
@@ -104,4 +103,4 @@ t_ParentesisA = r'('
 t_ParentesisC = r')'
 
 def t_error(t):
-    print "Error lexico '%s' " % t.value[0]
+    print("Error lexico '%s' " % t.value[0])

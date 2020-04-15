@@ -74,23 +74,43 @@ Simbolos = {
         "¿" : "Signo_interrogacion_abierto " ,
         "?" : "Signo_interrogacion_cerrado " ,
         "/" : "Signo_Diagonal"
-        '"' : "Signo_comillas"
+        '"' : "Signo_comillas"]
 
         }
 
 Tokens = ['PronombresPersonales','AdjetivoDemostrativo','PronombreObjeto','PronombrePosesivo','PronombreInterrogativo',
 'VerboToBe','AdjetivoPosesivo','AdjetivoCalificativo','AdjetivoIndefinido','ArticuloIndefinido','PronombreDemostrativo',
 'AdverbioCantidad','AdjetivodeModo','AdverbiodeAfirmacion','AdverbiodeNegacion','AdverbiodeDuda','PreposiciondeLugar',
-'PreposiciondeTiempo','ConjugacionCoordinante','PreposiciondeMovimiento','ConjugacionSubordinantes','Interjeccion','Apostrofe',
-'SignoInterrogacionA','SignoInterrogacionC','SignoExclamacionA','SignoExclamacionA','coma','punto','dospuntos','puntoycoma','Comillas', 'ParentesisA',
-'ParentesisC'] +[*Simbolos.values()]
+'PreposiciondeTiempo','ConjugacionCoordinante','PreposiciondeMovimiento','ConjugacionSubordinantes','Interjeccion'] +[*Simbolos.values()]
 
 
 def t_Sujeto(t):
      '''
      [a-zA-z]+
      ''' 
-     if (t.value in PronombresPersonales): t.type = "PronombresPersonales" 
+     if (t.value in PronombresPersonales): t.type = "PronombresPersonales"
+      elif (t.value in AdjetivoDemostrativo): t.type = "AdjetivoDemostrativo"
+       elif (t.value in PronombreObjeto): t.type = "PronombreObjeto"
+        elif (t.value in PronombrePosesivo): t.type = "PronombrePosesivo"
+         elif (t.value in PronombreInterrogativo): t.type = "PronombreInterrogativo"
+          elif (t.value in VerboToBe): t.type = "VerboToBe" 
+           elif (t.value in AdjetivoPosesivo): t.type = "AdjetivoPosesivo" 
+            elif (t.value in AdjetivoCalificativo): t.type = "AdjetivoCalificativo"
+              elif (t.value in AdjetivoIndefinido): t.type = "AdjetivoIndefinido"
+                elif (t.value in ArticuloIndefinido): t.type = "ArticuloIndefinido"
+                  elif (t.value in PronombreDemostrativo): t.type = "PronombreDemostrativo"
+                    elif (t.value in AdverbioCantidad): t.type = "AdverbioCantidad"
+                      elif (t.value in AdjetivodeModo): t.type = "AdjetivodeModo"
+                        elif (t.value in AdverbiodeAfirmacion): t.type = "AdverbiodeAfirmacion"
+                          elif (t.value in AdverbiodeNegacion): t.type = "AdverbiodeNegacion"
+                            elif (t.value in AdverbiodeDuda): t.type = "AdverbiodeDuda"
+                              elif (t.value in PreposiciondeLugar): t.type = "PreposiciondeLugar"
+                                elif (t.value in PreposiciondeTiempo): t.type = "PreposiciondeTiempo"
+                                  elif (t.value in ConjugacionCoordinante): t.type = "ConjugacionCoordinante"
+                                    elif (t.value in PreposiciondeMovimiento): t.type = "PreposiciondeMovimiento"
+                                      elif (t.value in ConjugacionSubordinantes): t.type = "ConjugacionSubordinantes"
+                                        elif (t.value in Interjeccion): t.type = "Interjeccion"
+                                         
      return t
 
 def t_Simbolos(t):
@@ -101,18 +121,7 @@ def t_Simbolos(t):
   else: t_error(t)
         
 
-t_Apostrofe = r'´'
-t_SignoInterrogacionA = r'¿'
-t_SignoInterrogacionC = r'?'
-t_SignoExclamacionA = r'¡'
-t_SignoExclamacionC = r'!'
-t_coma = r','
-t_punto = r'.'
-t_dospuntos = r':'
-t_puntoycoma = r';'
-t_Comillas = r'"'
-t_ParentesisA = r'('
-t_ParentesisC = r')'
+
 
 def t_error(t):
     print("Error lexico '%s' " % t.value[0])

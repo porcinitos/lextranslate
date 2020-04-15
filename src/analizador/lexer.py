@@ -74,7 +74,11 @@ Simbolos = {
         "¿" : "Signo_interrogacion_abierto " ,
         "?" : "Signo_interrogacion_cerrado " ,
         "/" : "Signo_Diagonal"
-        '"' : "Signo_comillas"]
+        '{' : "Signo_Abrir_Llave",
+        '}' : "Signo_Cerrar_Llave",
+        '-' : "Signo_guion",
+        '_' : "Signo_guion_bajo",
+        ]
 
         }
 
@@ -110,12 +114,21 @@ def t_Sujeto(t):
                                     elif (t.value in PreposiciondeMovimiento): t.type = "PreposiciondeMovimiento"
                                       elif (t.value in ConjugacionSubordinantes): t.type = "ConjugacionSubordinantes"
                                         elif (t.value in Interjeccion): t.type = "Interjeccion"
+
+
+#esto se supone que es el metodo para lo de las mayusculas pero pues 
+if t.value.upper() in keywords:
+  t.value = t.value.upper()
+    t.type = t.valueS
                                          
      return t
 
+
+
+
 def t_Simbolos(t):
   '''
-  
+   [.|,|\|!|¡|¿|?|&|;|:|{|}|-|_|(|)|…|'|´]
   ''' 
   if (t.value in [*Simbolos.keys()]): t.type = Simbolos[t.value]
   else: t_error(t)

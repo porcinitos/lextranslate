@@ -63,7 +63,7 @@ PreposicionMovimiento = ['across','after','along','around','by','down','into','p
 
 ConjugacionCoordinante = ['and','but','however','so','or','then','therefore','yet']
 
-ConjugacionSubordinantes = ['although','as','after','before','if','since','until', 'because','though','whereas','while','nevertheless','only',]
+ConjugacionSubordinantes = ['although','as','after','before','if','since','until', 'because','though','whereas','while','nevertheless','only','whether']
 
 Interjeccion = ['wow','yuck','ouch','uh','oops','hey','yeah','eh']
 

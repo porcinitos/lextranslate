@@ -1,12 +1,13 @@
-tablaDeErrores  = ""
-tablaDeSimbolos = ""
+tablaErrores  = ""
+tablaSimbolos = ""
 
 def guardarError(t,tipo):
-  global tablaDeErrores
-  tablaDeErrores += ":: "+tipo+"('%s',%s,%s)\n" % (t.value, t.lineno,     t.lexpos)
+  global tablaErrores
+  tablaErrores += tipo+"('%s',%s,%s)\n" % (t.value, t.lineno,     t.lexpos)
 
-def lista_a_regex(lista):
-  expresion = ''
-  for elemento in lista: expresion = expresion + elemento + '|'
-  expresion = expresion[0:-1]
-  return expresion
+
+
+def guardarToken(t):
+  global tablaSimbolos
+  tablaSimbolos += "Simbolo (%s,%s,%s)\n" % (id,t.type,t.value)
+

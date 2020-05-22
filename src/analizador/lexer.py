@@ -140,8 +140,7 @@ def t_Simbolos(t):
 t_ignore  = " \t"
 
 def t_error(t):
-    print("Error lexico '%s' " % t.value[0])
-
+    U.guardarError(t,"Erro Léxico")
 
 def scan(txt):
   analizer = lex.lex()
@@ -149,6 +148,4 @@ def scan(txt):
   while True:
     tok = analizer.token()
     if not tok : break
-    print(":: %s \n" % tok)
-
-scan("I like to play with my girlfriend")
+    U.guardarToken(tok)

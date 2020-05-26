@@ -139,10 +139,9 @@ function cambiarEstadoAlEscribir(){
 }
 
 eel.expose(mostrarTabla)
-function mostrarTabla(tablaObj){
-  tablaObj = JSON.parse(tablaObj)
-	const salida = document.getElementById(tablaObj.tipo === "errores" ? "salidaDerecha" : "salidaIzquierda" )
-	salida.innerText = tablaObj.tabla
+function mostrarTabla(info, tipo){
+	const salida = document.getElementById(tipo === "errores" ? "salidaDerecha" : "salidaIzquierda" )
+	salida.innerText = info 
 	salida.classList.remove("invisible")
 }
 
@@ -194,7 +193,8 @@ function mostrarErrorTraduccion(){
 }
 
 function botonTraducirClick(){
-	const texto = entradaIzquierda.getElementsByClassName("entrada__textarea")[0].value.length
+	const texto = entradaIzquierda.getElementsByClassName("entrada__textarea")[0].value
+	console.log(texto)
 	eel.analizar(texto)
 }
 

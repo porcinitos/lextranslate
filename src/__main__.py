@@ -3,6 +3,11 @@ import os
 import easygui as gui
 from gtts import gTTS
 from platform import system
+from sys import path
+path.append("./analizador")
+import utils as U
+import lexer
+import sintactico
 
 @eel.expose
 def cargar_archivo():
@@ -26,20 +31,20 @@ def hablar(texto,lengua):
 
 @eel.expose
 def analizar(texto):
-  #ejecutamos los analisis
-  # obtenemos las variables desde utils
-  tabla_simbolos = "LexToken(tepo,15,2)\nLexToken(tepo,15,2)\nLexToken(tepo,15,2)\nLexToken(tepo,15,2)\nLexToken(tepo,15,2)\nLexToken(tepo,15,2)"
-  # tabla_errores ="LexToken(error,15,2)"
-  tabla_errores =""
-  traduccion = "tepo tepo"
-  if len(tabla_simbolos) > 0:
-    eel.mostrarTabla('{"tabla":"%r","tipo":"simbolos"}' % tabla_simbolos)
-  if len(tabla_errores) > 0:
-    eel.mostrarTabla('{"tabla":"%r","tipo":"errores"}'  % tabla_errores)
+  traduccion = "mentenblanco"
+  lexer.scan(texto)
+  sintactico.parsear(texto)
+  print (U.tablaErrores)
+  if len(U.tablaSimbolos) > 0:
+    eel.mostrarTabla(U.tablaSimbolos,'simbolo')
+  if len(U.tablaErrores) > 0:
+    eel.mostrarTabla(U.tablaErrores,'errores')
     eel.mostrarErrorTraduccion()
   else:
-    # traduccir va vos
     eel.mostrarTraduccion(traduccion)
+  U.tablaSimbolos =""
+  U.tablaErrores=""
+
 def __init__():
   eel.init('./gui')
   eel.start('index.html', size = (1020, 540), mode='chrome' )

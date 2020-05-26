@@ -24,7 +24,8 @@ def p_PresenteSimple(p):
     '''
     PresenteSimple : PresenteSimpleStruct Sustantivo Signo_Punto
                    | PresenteSimpleStruct Signo_Punto
-                   | PresenteSimpleStruct Preposicion VerboPresentePrimeraPersona AdverbioLugar ArticuloDefinido Sustantivo Signo_Punto
+                   | PresenteSimpleStruct Preposicion VerboPresentePrimeraPersona AdverbioLugar Articulos Sustantivo Signo_Punto
+                   | PresenteSimpleStruct Preposicion VerboPresentePrimeraPersona Sustantivo Signo_Punto
     '''
 def p_PresenteSimpleStruct(p):
     '''

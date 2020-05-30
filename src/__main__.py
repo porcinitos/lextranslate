@@ -1,13 +1,16 @@
-import eel
-import os
-import easygui as gui
-from gtts import gTTS
-from platform import system
 from sys import path
 path.append("./analizador")
 import utils as U
 import lexer
 import sintactico
+
+import eel
+import os
+import easygui as gui
+from gtts import gTTS
+from platform import system
+from langdetect import detect
+from translate import Translator
 
 @eel.expose
 def cargar_archivo():
@@ -29,12 +32,21 @@ def hablar(texto,lengua):
     PlaySound(audioname, SND_FILENAME)
   os.remove(audioname)
 
+def traducir(texto, to):
+  print("to -> " + to)
+  translator = Translator(to_lang=to)
+  return translator.translate(texto)
+
 @eel.expose
-def analizar(texto):
-  traduccion = "mentenblanco"
-  lexer.scan(texto)
-  sintactico.parsear(texto)
-  print (U.tablaErrores)
+def analizar(texto,lang):
+  print(detect(texto)+ " " + lang)
+  if (detect(texto) == lang):
+    traduccion = traducir(texto, "en" if lang == "es" else "es")
+    lexer.scan(texto)
+    sintactico.parsear(texto)
+  else:
+    U.tablaErrores += "Lengua incorrecta"
+
   if len(U.tablaSimbolos) > 0:
     eel.mostrarTabla(U.tablaSimbolos,'simbolo')
   if len(U.tablaErrores) > 0:
@@ -44,6 +56,7 @@ def analizar(texto):
     eel.mostrarTraduccion(traduccion)
   U.tablaSimbolos =""
   U.tablaErrores=""
+
 
 def __init__():
   eel.init('./gui')

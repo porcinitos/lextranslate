@@ -24,7 +24,9 @@ ArticuloDefinido = ["the"]
 
 ArticuloIndefinido = ['a','an']
 
-PronombresPersonales = ['i','you','we','they','she','he']
+PronombrePrimeraPersona = ['i','you','we','they']
+
+PronombreTerceraPersona = ['he','she','it']
 
 PronombreDemostrativo = ['such','none']
 
@@ -36,7 +38,9 @@ PronombrePosesivo = ['mine', 'yours', 'his', 'hers', 'ours', 'theirs']
 
 VerboToBe = ['am','is','are']
 
-VerboPresente = ["like","answer","arrive","ask","be ","borrow","break ","buy ","catch ","clean","climb","collect","come ","compose","cook","cut ","dance","describe","discover","do ","drink ","drive ","eat ","enjoy","fall ","feel ","find ","fly ","forget ","give ","go ","happen","have ","help","hurt ","invent","invite","kill","know ","lend","leave ","lie ","like","live","look","love","make ","meet","miss","open","pack","pay ","phone","play","prefer","prepare","push","put ","rain","read ","remember","rent","rescue","return","ring ","save","say ","search","see ","sell ","sit ","skate","ski","sleep ","smell","speak","spend ","start","stay","stop","study","survive","swim ","take ","talk","teach","tell","think","throw","touch","try","understand","use","visit","wait","walk","want","wash","watch","wear ","work","write"]
+VerboPresentePrimeraPersona = ["like","answer","arrive","ask","be","borrow","break ","buy","catch","clean","climb","collect","come","compose","cook","cut","dance","describe","discover","do","drink","drive","eat","enjoy","fall","feel","find","fly","forget","give","go","happen","have","help","hurt","invent","invite","kill","know","lend","leave","lie","like","live","look","love","make","meet","miss","open","pack","pay","phone","play","prefer","prepare","push","put","rain","read","remember","rent","rescue","return","ring","save","say","search","see","sell","sit","skate","ski","sleep","smell","speak","spend","start","stay","stop","study","survive","swim","take","talk","teach","tell","think","throw","touch","try","understand","use","visit","wait","walk","want","wash","watch","wear","work","write"]
+
+VerboPresenteTerceraPersona = ["likes","answers","arrives","asks","borrows","breaks","buys","catchs","cleans","climbs","collects","comes","composes","cooks","cuts","dances","describes","discovers","does","drinks","drives","eats","enjoys","falls","feels","finds","fliess","forgets","gives","goes","happens","haves","helps","hurts","invents","invites","kills","knows","lends","leaves","lies","likes","lives","looks","loves","makes","meets","misses","opens","packs","pays","phones","plays","prefers","prepares","pushs","puts","rains","reads","remembers","rents","rescues","returns","rings","saves","says","searchs","sees","sells","sits","skates","skies","sleeps","smells","speaks","spends","starts","stays","stops","studys","survives","swims","takes","talks","teachs","tells","thinks","throws","touchs","tries","understands","uses","visits","waits","walks","wants","washs","watchs","wears","works","writes"]
 
 VerboPresenteParticipio = ["liking","answering","arriving","asking","been","borrowing","breaking","buying","catching","cleaning","climbing","collecting","comeing","composeing","cooking","cuting","dancing","describing","discovering","doing","drinking","driving","eating","enjoying","falling","feeling","finding","flying","forgetting","giving","going","happening","having","helping","hurting","inventing","inviteing","killing","knowing","lending","leaveing","lying","liking","living","looking","loving","making","meeting","missing","opening","packing","paying","phoning","playing","prefering","preparing","pushing","puting","raining","reading","remembering","renting","rescuing","returning","ringing","saving","saying","searching","seeing","selling","sitting","skating","skiing","sleeping","smelling","speaking","spending","starting","staying","stoping","studying","surviveing","swimming","taking","talking","teaching","telling","thinking","throwing","touching","trying","understanding","using","visiting","waiting","walking","wanting","washing","watching","wearing","working","writeing"]
 
@@ -88,7 +92,7 @@ Simbolos = {
         '_' : "Signo_guion_bajo",
         }
 
-tokens = ['Sustantivo','AdjetivoPosesivo','AdjetivoDemostrativo','AdjetivoCalificativo','AdjetivoNumeralCardinal','AdjetivoNumeralOrdinal','AdjetivoIndefinido','ArticuloDefinido','ArticuloIndefinido','PronombresPersonales','PronombreDemostrativo','PronombreInterrogativo','PronombrePosesivo','PronombreObjeto','VerboToBe', 'VerboPresente', 'VerboPresenteParticipio', 'VerboPasado', 'VerboPasadoParticipio','AdverbioTiempo','AdverbioLugar','AdverbioCantidad','AdverbioModo','AdverbioAfirmacion','AdverbioNegacion','AdverbioDuda','Preposicion', 'ConjuncionCoordinante','ConjuncionSubordinantes','Interjeccion','Contraccion'] +[*Simbolos.values()]
+tokens = ['Sustantivo','AdjetivoPosesivo','AdjetivoDemostrativo','AdjetivoCalificativo','AdjetivoNumeralCardinal','AdjetivoNumeralOrdinal','AdjetivoIndefinido','ArticuloDefinido','ArticuloIndefinido','PronombrePrimeraPersona','PronombreTerceraPersona','PronombreDemostrativo','PronombreInterrogativo','PronombrePosesivo','PronombreObjeto','VerboToBe', 'VerboPresentePrimeraPersona','VerboPresenteTerceraPersona', 'VerboPresenteParticipio', 'VerboPasado', 'VerboPasadoParticipio','AdverbioTiempo','AdverbioLugar','AdverbioCantidad','AdverbioModo','AdverbioAfirmacion','AdverbioNegacion','AdverbioDuda','Preposicion', 'ConjuncionCoordinante','ConjuncionSubordinantes','Interjeccion','Contraccion'] +[*Simbolos.values()]
 
 
 def t_Sustantivo(t):
@@ -104,13 +108,15 @@ def t_Sustantivo(t):
   elif (t.value in AdjetivoIndefinido): t.type = "AdjetivoIndefinido"
   elif (t.value in ArticuloDefinido): t.type = "ArticuloDefinido"
   elif (t.value in ArticuloIndefinido): t.type = "ArticuloIndefinido"
-  elif (t.value in PronombresPersonales): t.type = "PronombresPersonales"
+  elif (t.value in PronombrePrimeraPersona): t.type = "PronombrePrimeraPersona"
+  elif (t.value in PronombreTerceraPersona): t.type = "PronombreTerceraPersona"
   elif (t.value in PronombreDemostrativo): t.type = "PronombreDemostrativo"
   elif (t.value in PronombreInterrogativo): t.type = "PronombreInterrogativo"
   elif (t.value in PronombreObjeto): t.type = "PronombreObjeto"
   elif (t.value in PronombrePosesivo): t.type = "PronombrePosesivo"
   elif (t.value in VerboToBe): t.type = "VerboToBe"
-  elif (t.value in VerboPresente): t.type = "VerboPresente"
+  elif (t.value in VerboPresentePrimeraPersona): t.type = "VerboPresentePrimeraPersona"
+  elif (t.value in VerboPresenteTerceraPersona): t.type = "VerboPresenteTerceraPersona"
   elif (t.value in VerboPresenteParticipio): t.type = "VerboPresenteParticipio"
   elif (t.value in VerboPasado): t.type = "VerboPasado"
   elif (t.value in VerboPasadoParticipio): t.type = "VerboPasadoParticipio"
@@ -137,10 +143,10 @@ def t_Simbolos(t):
   if (t.value in [*Simbolos.keys()]): t.type = Simbolos[t.value]
   return t
 
-t_ignore  = " \t"
+t_ignore  = " \t\n"
 
 def t_error(t):
-    U.guardarError(t,"Erro Léxico")
+    U.guardarError(t,"Error Léxico")
 
 def scan(txt):
   analizer = lex.lex()
@@ -149,3 +155,4 @@ def scan(txt):
     tok = analizer.token()
     if not tok : break
     U.guardarToken(tok)
+    print(tok)

@@ -12,6 +12,8 @@ eel    = "*"
 gtts = "*"
 winsound = "*"
 easygui = "*"
+translate = "*"
+langdetect = "*"
 
 [requires]
 python_version = "3.8"

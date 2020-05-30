@@ -1,5 +1,5 @@
 // globales 
-const ESPAÑOL = 0, ENGLISH = 1;
+const ESPAÑOL = "es", ENGLISH = "en";
 let lenguajeActual = ESPAÑOL;
 
 //elementos
@@ -22,7 +22,7 @@ class ReconocimientoPorVoz{
 	activarEscucharYEscribir(area){
     let archivo = entradaIzquierda.getElementsByClassName("entrada__archivo")[0]
   	let configs = {
-			lang: lenguajeActual == ESPAÑOL? "es-ES" : "en-US",
+			lang: lenguajeActual == ESPAÑOL ? "es-ES" : "en-US",
       continuous:true, 
 			onResult: texto => area.value = texto != "" ? texto : area.value,
 			onStart: () => archivo.classList.add("invisible"),
@@ -195,7 +195,7 @@ function mostrarErrorTraduccion(){
 function botonTraducirClick(){
 	const texto = entradaIzquierda.getElementsByClassName("entrada__textarea")[0].value
 	console.log(texto)
-	eel.analizar(texto)
+	eel.analizar(texto, lenguajeActual)
 }
 
 (function events(){

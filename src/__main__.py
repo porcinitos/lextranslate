@@ -22,28 +22,31 @@ def cargar_archivo():
 @eel.expose
 def hablar(texto,lengua):
   audioname = "voice.wav"
-  tts = gTTS(text=texto, lang = "es" if lengua == 0 else "en")
-  print("es" if lengua == 0 else "en")
+  tts = gTTS(text=texto, lang = lengua)
   tts.save(audioname)
   if (system() == "Linux"):
    os.system("mpg123 " + audioname)
-  else:
-    from winsound import PlaySound, SND_FILENAME
-    PlaySound(audioname, SND_FILENAME)
   os.remove(audioname)
 
-def traducir(texto, to):
+def traducir(texto,froml, to):
   print("to -> " + to)
-  translator = Translator(to_lang=to)
+  translator = Translator(from_lang=froml,to_lang=to)
   return translator.translate(texto)
 
 @eel.expose
 def analizar(texto,lang):
-  print(detect(texto)+ " " + lang)
-  if (detect(texto) == lang):
-    traduccion = traducir(texto, "en" if lang == "es" else "es")
-    lexer.scan(texto)
-    sintactico.parsear(texto)
+  print(texto)
+  print(detect(texto) + " " + lang)
+  traduccion = ""
+  if (detect(texto)  == lang or lang == "en" ):
+    if lang == "es":
+      traduccion = traducir(texto, lang, "en")
+      print(traduccion)
+      U.tablaSimbolos += "Analisis únicamente disponible en ingles"
+    else:
+      traduccion = traducir(texto, lang, "es")
+      lexer.scan(texto)
+      sintactico.parsear(texto)
   else:
     U.tablaErrores += "Lengua incorrecta"
 
